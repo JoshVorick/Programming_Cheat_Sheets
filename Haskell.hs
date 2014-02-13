@@ -70,3 +70,57 @@ snd ("Josh", 18) --18  ONLY WORKS ON PAIRS
 zip ["ABC", "DE", "I"] [1,2,3] --[("ABC,1),("DE",2),("I",3)]
 zip ['a','b'..] [1,2,3,4,5,6] --[('a',1),('b',2),('c',3),('d',4),('e',5),('f',6)
 [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2] --[(3,4,5), (6,8,10)]
+
+--Types and Typeclasses!!  
+--NOTE: Int has a min/max value. Integer has no min/max, but runs slower.
+--NOTE: Things that start with a capital letter are Types.
+:t "Return type of an expression" --"Return type of an expression" :: [Char]
+:t max --max :: Ord a => a -> a -> a->
+:t (==) --(==) :: (Eq a) => a -> a -> Bool
+function :: function Integer -> Integer --Use this to declare the type of your function
+--Some typeclasses:
+--  Eq: == /=               functions that test equality
+--  Ord: > <= `compare`     functions reutrn greater than, less than or equal to
+--  Show: Int Bool Char     Any Type that can be written as a String
+--  Read: String            Opposite of Show. Reads String as member of other type
+--  Enum: [1..8] ['a'..'e'] Sequentially ordered types (i.e. 'succ')
+--  Bounded: Int Char Bool  Member with upper and lower bound
+--  Num: Int Integer Double Any Type of number. Whole numbers are polymorphic constants
+--  Integral: Int Integer   Any whole number
+--  Floating: Float Double  Floating point numbers
+show 3.7 --"3.7"
+read "True" || False --True YOU NEED ANOTHER TYPE (False in this case) TO HELP READ KNOW WHAT ITS READING
+read "[1,2,3,4,5]" :: Int --[1,2,3,4,5]
+maxBound :: Int --2147483648
+minBound :: Char --'\NUL'
+fromIntegral 34 --34  Converts from Type 'Integral' to 'Num' (makes numbers play nice together)
+
+
+--FUNCTIONS!!!! LYAH puts the funk in functions
+--  Define your functions type class
+--  Define specific instances (i.e. foo 0 = ??? or foo "Yes" = ???)
+--  Define nonspecific instances (i.e. foo a = ???)
+--Haskell searches for a match top to bottom, so your last definition should be like your final else
+factorial :: (Integral a) => a -> a
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+--Cool stuff you can do:
+foo [] = []
+foo (_:[]) = "One Element"
+foo (_:_:xs) = "Multiple Elements"
+
+bar (x1,y1) (x2,y2) = (x1+x2,y1+y2)
+
+woo all@(x:xs) = "First letter of " ++ all ++ " is " ++ [x]
+
+rar :: [Integer] -> String
+rar [] = "MORE!!!"
+rar (_:[]) = "MORE!!!!"
+rar a
+	| n > first  = "First is small"
+	| n > second = "Second should be bigger"
+	| otherwise  = "All Good"
+   where n = 100
+         (first:second:_) = a
+
+--sumotherfunctionsyoboyjollygood
