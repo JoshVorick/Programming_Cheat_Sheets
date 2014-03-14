@@ -77,7 +77,7 @@ zip ['a','b'..] [1,2,3,4,5,6] --[('a',1),('b',2),('c',3),('d',4),('e',5),('f',6)
 :t "Return type of an expression" --"Return type of an expression" :: [Char]
 :t max --max :: Ord a => a -> a -> a->
 :t (==) --(==) :: (Eq a) => a -> a -> Bool
-function :: function Integer -> Integer --Use this to declare the type of your function
+function :: Integer -> Integer --Use this syntax to declare the type of your function
 --Some typeclasses:
 --  Eq: == /=               functions that test equality
 --  Ord: > <= `compare`     functions reutrn greater than, less than or equal to
