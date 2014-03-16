@@ -16,26 +16,58 @@ help help  		% try it (It won't crash, I promise)
 CHANGE PROMPT THING
 PS1('>> ');  	% sets prompt thing to '>> ' not 'octave-3.2.4.exe.11'
 
+
 SAVE VARIABLES
 % You can save variables as you go
 % i.e. When enter a = 3, then later just enter a, it will return 3
 
+
 MATHEMATICAL OPERATIONS
 a^b 				% returns a to the b power
 sqrt(num)		% returns square root of num
+
 
 BOOLEAN OPERATIONS
 a == b  			% tests for equality
 a ~= b  			% tests for in equality (like a != b in C)
 % all other boolean operators are like C (&&, ||, >=, etc)
 
+
+CONTROL STATEMENTS (if, for, while)
+for i=1:10,		% <-any array
+	v(i) = 2^i;	% <-White space doesn't matter
+end;				% <-Show where it ends
+
+i=1;				% init i
+while true,		% while STATEMENT
+	i = i + 1;	
+	if i==6,		% if STATEMENT
+		break;	% break out of while loop
+	elseif i==3,% elseif STATEMENT
+		v(i)=3;
+	else,			% else
+		v(i)=4;
+	end;			% ends the if
+end;				% ends the while
+
+
+MAKING FUNCTIONS		% Octave will automatically seek out your functions if they are in a file in your current directory
+function [y1, y2] = sq(x)	% Make a function sq that takes a parameter x and returns y1 and y2
+y1 = x^2;				% Function body
+y2 = x^4;
+% Example call
+[a,b] = sq(5)			% Now a will be 25 and b will be 625 
+
+
 DISPLAY/PRINT STRINGS
 disp(variable); % displays variable
 disp(sprintf('4 decimals: %0.4f', 3.123123)); % prints '4 decimals: 3.1231'
 
+
 FORMAT OUTPUT
 format long 	% sets variable display foramt to long, so it will show more decimals
 format short 	% resets to default
+
 
 CREATING MATRICES AND VECTORS
 [1 2; 3 4; 5 6] % returns 3x2 matrix with those values
@@ -45,6 +77,7 @@ rand(2,3)		% returns a 2x3 matrix of random numbers between 0 and 1
 randn(2,3)		% returns a 2x3 matrix of random numbers from Gaussian distribution
 eye(num)			% returns the Identity matrix of a num by num matrix
 magic(5)			% returns 5x5 magic square (see help magic) HOW FUN!!
+
 
 ACCESSING MATRICES
 size(A)			% returns dimensions of matrix
@@ -66,6 +99,7 @@ A(:,3)			% returns entire 3rd column								|specific elements
 A([1 3], :)		% returns entire 1st and 3rd row							|A(3,2) = 1.5
 A(:)				% Puts all elements of A into a column vector
 C = [A B]		% C is A and B concatenated. Semicolon makes A go on top of B
+
 
 MATRIX OPERATIONS
 A * B				% Multiply matrices A and C
@@ -90,12 +124,15 @@ clear				% clear ALL variables
 clear var		% clears variable named 'var'
 save file.mat var					% saves variable 'var' to file 'file.mat'
 save file.txt var -ascii		% saves variable 'var' to file 'file.txt' in human-readable format
+addpath('C:\Users\Me\Desktop'); % Now Octave will search this directory when looking for a function
+
 
 GRAPHING FUNCTIONS
 plot(t, y1);	% Plots line. t and y1 must be vectors
 imagesc(A);		% Plots matrix as grid of colors
 hist(A);			% Create histogram of A's values with ??? bars
 hist(A, num); 	% creates a histogram of A's values with 'num' bars
+
 
 GRAPHING HELPER FUNCTIONS
 hold on;					% Holds on to previous graph, next gets plotted on top
