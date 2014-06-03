@@ -81,8 +81,9 @@ magic(5)			% returns 5x5 magic square (see help magic) HOW FUN!!
 
 ACCESSING MATRICES
 size(A)			% returns dimensions of matrix
-size(A, 1)		% returns number of rows
-size(A, 2)		% returns number of columns
+size(A, 1)	% returns number of rows
+size(A, 2)	% returns number of columns
+numel(A)		% returns number of elements in A. If A is 3x4 matrix, numel(A) is 12
 length(v)		% returns length of vector
 max(v)			% returns max value in v
 sum(v)			% returns sum of v's elements.
